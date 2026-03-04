@@ -3,6 +3,14 @@
     "version": "1.0.0",
     "description": "SDK oficial Safefy Payment para Node.js com TypeScript",
     "type": "module",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Safefy-Pay/safefy-sdk-node.git"
+    },
+    "homepage": "https://github.com/Safefy-Pay/safefy-sdk-node#readme",
+    "bugs": {
+        "url": "https://github.com/Safefy-Pay/safefy-sdk-node/issues"
+    },
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -25,7 +33,11 @@
         "dev": "tsup src/index.ts --format cjs,esm --watch --dts",
         "typecheck": "tsc --noEmit",
         "clean": "node -e \"const fs=require('fs');if(fs.existsSync('dist'))fs.rmSync('dist',{recursive:true,force:true});\"",
-        "prepublishOnly": "npm run typecheck && npm run build"
+        "prepublishOnly": "npm run typecheck && npm run build",
+        "release:patch": "npm version patch -m \"chore(release): %s\"",
+        "release:minor": "npm version minor -m \"chore(release): %s\"",
+        "release:major": "npm version major -m \"chore(release): %s\"",
+        "publish:npm": "npm publish --access public"
     },
     "keywords": [
         "sdk",
@@ -37,6 +49,9 @@
     ],
     "author": "Matheus Louly",
     "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
     "devDependencies": {
         "@types/node": "^25.3.3",
         "tsup": "^8.5.1",

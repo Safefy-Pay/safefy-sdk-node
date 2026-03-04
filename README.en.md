@@ -1,7 +1,7 @@
 # Safefy SDK Node (TypeScript)
 
 [![Version](https://img.shields.io/npm/v/safefy-sdk-node?label=Version&logo=npm)](https://www.npmjs.com/package/safefy-sdk-node)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/safefypay/safefy-sdk-node/ci.yml?label=Build%20Status&logo=github)](https://github.com/safefypay/safefy-sdk-node/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/Safefy-Pay/safefy-sdk-node/ci.yml?label=Build%20Status&logo=github)](https://github.com/Safefy-Pay/safefy-sdk-node/actions)
 [![Downloads](https://img.shields.io/npm/dm/safefy-sdk-node?label=Downloads&logo=npm)](https://www.npmjs.com/package/safefy-sdk-node)
 [![Documentation PT-BR](https://img.shields.io/badge/Documentation-Portugues%20(BR)-009C3B)](./README.md)
 
@@ -127,3 +127,16 @@ try {
 npm run typecheck
 npm run build
 ```
+
+## Versioning
+
+Safefy SDK follows semantic versioning in the `MAJOR.MINOR.PATCH` format.
+
+- `MAJOR` (`X.0.0`): changes that may require updates in your code (breaking changes).
+- `MINOR` (`1.X.0`): new features without breaking existing integrations.
+- `PATCH` (`1.0.X`): fixes and internal improvements without expected behavior changes.
+
+Production recommendation:
+
+- Auto-update only `PATCH` and `MINOR` versions.
+- Plan `MAJOR` upgrades with validation tests before production rollout.
