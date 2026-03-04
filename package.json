@@ -1,0 +1,45 @@
+{
+    "name": "safefy-sdk-node",
+    "version": "1.0.0",
+    "description": "SDK oficial Safefy Payment para Node.js com TypeScript",
+    "type": "module",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "sideEffects": false,
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "engines": {
+        "node": ">=18"
+    },
+    "scripts": {
+        "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+        "dev": "tsup src/index.ts --format cjs,esm --watch --dts",
+        "typecheck": "tsc --noEmit",
+        "clean": "node -e \"const fs=require('fs');if(fs.existsSync('dist'))fs.rmSync('dist',{recursive:true,force:true});\"",
+        "prepublishOnly": "npm run typecheck && npm run build"
+    },
+    "keywords": [
+        "sdk",
+        "safefy",
+        "api",
+        "payments",
+        "typescript",
+        "node"
+    ],
+    "author": "Matheus Louly",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "^25.3.3",
+        "tsup": "^8.5.1",
+        "typescript": "^5.9.3"
+    }
+}
