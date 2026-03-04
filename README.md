@@ -1,16 +1,17 @@
-# Safefy SDK Node (TypeScript)
+# Safefy SDK
 
-[![Version](https://img.shields.io/npm/v/safefy-sdk-node?label=Version&logo=npm)](https://www.npmjs.com/package/safefy-sdk-node)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/Safefy-Pay/safefy-sdk-node/ci.yml?label=Build%20Status&logo=github)](https://github.com/Safefy-Pay/safefy-sdk-node/actions)
-[![Downloads](https://img.shields.io/npm/dm/safefy-sdk-node?label=Downloads&logo=npm)](https://www.npmjs.com/package/safefy-sdk-node)
+[![npm version](https://img.shields.io/npm/v/safefy-sdk-node?label=Version&logo=npm)](https://www.npmjs.com/package/safefy-sdk-node)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/Safefy-Pay/safefy-sdk-node/ci.yml?branch=main&label=Build%20Status&logo=github)](https://github.com/Safefy-Pay/safefy-sdk-node/actions)
+[![npm downloads](https://img.shields.io/npm/dt/safefy-sdk-node?label=Downloads&logo=npm)](https://www.npmjs.com/package/safefy-sdk-node)
+[![Node version](https://img.shields.io/node/v/safefy-sdk-node?label=Node.js&logo=node.js)](https://www.npmjs.com/package/safefy-sdk-node)
+[![License](https://img.shields.io/npm/l/safefy-sdk-node?label=License)](https://www.npmjs.com/package/safefy-sdk-node)
 [![Documentation EN](https://img.shields.io/badge/Documentation-English-0A66C2)](./README.en.md)
-
-[English version](./README.en.md)
 
 SDK oficial para integrar com a Safefy Payment API.
 
 ## Links oficiais
 
+- [Pacote no npm](https://www.npmjs.com/package/safefy-sdk-node)
 - [Documentação](https://docs.safefypay.com.br/)
 - [Painel Safefy](https://app.safefypay.com.br/)
 - [Credenciais de API](https://app.safefypay.com.br/panel/merchant/api-credentials)
