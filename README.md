@@ -11,11 +11,11 @@ SDK oficial para integrar com a Safefy Payment API.
 
 ## Links oficiais
 
-- Documentacao: [https://docs.safefypay.com.br/](https://docs.safefypay.com.br/)
-- Painel Safefy: [https://app.safefypay.com.br/](https://app.safefypay.com.br/)
-- Credenciais de API: [https://app.safefypay.com.br/panel/merchant/api-credentials](https://app.safefypay.com.br/panel/merchant/api-credentials)
-- Taxas e metodos habilitados por organizacao: [https://app.safefypay.com.br/panel/merchant/fees](https://app.safefypay.com.br/panel/merchant/fees)
-- Status da plataforma: [https://status.safefypay.com.br/](https://status.safefypay.com.br/)
+- [Documentação](https://docs.safefypay.com.br/)
+- [Painel Safefy](https://app.safefypay.com.br/)
+- [Credenciais de API](https://app.safefypay.com.br/panel/merchant/api-credentials)
+- [Taxas e métodos habilitados por organização](https://app.safefypay.com.br/panel/merchant/fees)
+- [Status da plataforma](https://status.safefypay.com.br/)
 
 ## Instalacao
 
@@ -62,9 +62,9 @@ console.log(transaction.id, transaction.status, transaction.pix?.copyAndPaste);
 
 Os metodos disponiveis para criar cobrancas dependem da configuracao da sua organizacao (merchant).
 
-- Consulte no painel: [https://app.safefypay.com.br/panel/merchant/fees](https://app.safefypay.com.br/panel/merchant/fees)
-- Ajuste de credenciais: [https://app.safefypay.com.br/panel/merchant/api-credentials](https://app.safefypay.com.br/panel/merchant/api-credentials)
-- Consulte a documentacao de API para payloads e regras: [https://docs.safefypay.com.br/](https://docs.safefypay.com.br/)
+- Consulte no [painel de taxas e metodos habilitados](https://app.safefypay.com.br/panel/merchant/fees)
+- Ajuste em [credenciais de API](https://app.safefypay.com.br/panel/merchant/api-credentials)
+- Consulte a [documentacao da API](https://docs.safefypay.com.br/) para payloads e regras
 
 No SDK, os metodos aceitos no campo `method` sao:
 

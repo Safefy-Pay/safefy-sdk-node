@@ -11,11 +11,11 @@ Official SDK to integrate with Safefy Payment API.
 
 ## Official links
 
-- Docs: [https://docs.safefypay.com.br/](https://docs.safefypay.com.br/)
-- Safefy Dashboard: [https://app.safefypay.com.br/](https://app.safefypay.com.br/)
-- API Credentials: [https://app.safefypay.com.br/panel/merchant/api-credentials](https://app.safefypay.com.br/panel/merchant/api-credentials)
-- Fees and enabled payment methods per organization: [https://app.safefypay.com.br/panel/merchant/fees](https://app.safefypay.com.br/panel/merchant/fees)
-- Platform status: [https://status.safefypay.com.br/](https://status.safefypay.com.br/)
+- [Documentation](https://docs.safefypay.com.br/)
+- [Safefy Dashboard](https://app.safefypay.com.br/)
+- [API Credentials](https://app.safefypay.com.br/panel/merchant/api-credentials)
+- [Fees and enabled payment methods per organization](https://app.safefypay.com.br/panel/merchant/fees)
+- [Platform status](https://status.safefypay.com.br/)
 
 ## Installation
 
@@ -62,9 +62,9 @@ console.log(transaction.id, transaction.status, transaction.pix?.copyAndPaste);
 
 Available methods depend on your merchant configuration.
 
-- Check organization settings: [https://app.safefypay.com.br/panel/merchant/fees](https://app.safefypay.com.br/panel/merchant/fees)
-- Manage API credentials: [https://app.safefypay.com.br/panel/merchant/api-credentials](https://app.safefypay.com.br/panel/merchant/api-credentials)
-- API rules and payload details: [https://docs.safefypay.com.br/](https://docs.safefypay.com.br/)
+- Check [organization settings for fees and enabled methods](https://app.safefypay.com.br/panel/merchant/fees)
+- Manage [API credentials](https://app.safefypay.com.br/panel/merchant/api-credentials)
+- Check [API documentation](https://docs.safefypay.com.br/) for rules and payload details
 
 Accepted SDK `method` values:
 
