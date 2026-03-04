@@ -18,13 +18,13 @@ SDK oficial para integrar com a Safefy Payment API.
 - [Taxas e métodos habilitados por organização](https://app.safefypay.com.br/panel/merchant/fees)
 - [Status da plataforma](https://status.safefypay.com.br/)
 
-## Instalacao
+## Instalação
 
 ```bash
 npm install safefy-sdk-node
 ```
 
-## Configuracao rapida
+## Configuração rápida
 
 ```ts
 import { SafefyPaymentSDK } from "safefy-sdk-node";
@@ -36,7 +36,7 @@ const sdk = new SafefyPaymentSDK({
 });
 ```
 
-## Criar uma transacao
+## Criar uma transação
 
 ```ts
 const transaction = await sdk.transactions.create({
@@ -56,18 +56,18 @@ console.log(transaction.id, transaction.status, transaction.pix?.copyAndPaste);
 - Gera token em `POST /v1/auth/token`
 - Renova token automaticamente antes de expirar
 - Envia `Authorization: Bearer` nas rotas protegidas
-- Lanca `SafefyApiError` com `status`, `code` e `details`
-- Suporta logs coloridos de todo o fluxo HTTP/autenticacao
+- Lança `SafefyApiError` com `status`, `code` e `details`
+- Suporta logs coloridos de todo o fluxo HTTP/autenticação
 
-## Metodos de pagamento suportados pela sua organizacao
+## Métodos de pagamento suportados pela sua organização
 
-Os metodos disponiveis para criar cobrancas dependem da configuracao da sua organizacao (merchant).
+Os métodos disponíveis para criar cobranças dependem da configuração da sua organização (merchant).
 
-- Consulte no [painel de taxas e metodos habilitados](https://app.safefypay.com.br/panel/merchant/fees)
+- Consulte no [painel de taxas e métodos habilitados](https://app.safefypay.com.br/panel/merchant/fees)
 - Ajuste em [credenciais de API](https://app.safefypay.com.br/panel/merchant/api-credentials)
-- Consulte a [documentacao da API](https://docs.safefypay.com.br/) para payloads e regras
+- Consulte a [documentação da API](https://docs.safefypay.com.br/) para payloads e regras
 
-No SDK, os metodos aceitos no campo `method` sao:
+No SDK, os métodos aceitos no campo `method` são:
 
 - `Pix`
 - `CreditCard`
@@ -92,7 +92,7 @@ const sdk = new SafefyPaymentSDK({
 });
 ```
 
-## Modulos principais
+## Módulos principais
 
 - `sdk.transactions`: `create`, `createRaw`, `list`, `listRaw`, `get`, `getRaw`, `simulate`, `simulateRaw`
 - `sdk.cashouts`: `create`, `createRaw`, `list`, `listRaw`, `get`, `getRaw`
@@ -131,13 +131,13 @@ npm run build
 
 ## Versionamento
 
-A Safefy SDK segue versionamento semantico no formato `MAJOR.MINOR.PATCH`.
+A Safefy SDK segue versionamento semântico no formato `MAJOR.MINOR.PATCH`.
 
-- `MAJOR` (`X.0.0`): mudancas que podem exigir ajustes no seu codigo (quebras de compatibilidade).
-- `MINOR` (`1.X.0`): novas funcionalidades sem quebrar o que ja funciona.
-- `PATCH` (`1.0.X`): correcoes e melhorias internas sem alterar comportamento esperado.
+- `MAJOR` (`X.0.0`): mudanças que podem exigir ajustes no seu código (quebras de compatibilidade).
+- `MINOR` (`1.X.0`): novas funcionalidades sem quebrar o que já funciona.
+- `PATCH` (`1.0.X`): correções e melhorias internas sem alterar comportamento esperado.
 
-Recomendacao para producao:
+Recomendação para produção:
 
 - Atualize automaticamente apenas `PATCH` e `MINOR`.
-- Planeje a migracao de versoes `MAJOR` com testes antes de publicar em producao.
+- Planeje a migração de versões `MAJOR` com testes antes de publicar em produção.
