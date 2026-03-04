@@ -53,7 +53,7 @@ export class SafefyLogger {
                 colors: true,
                 level: "info",
                 includeHeaders: false,
-                includeBody: true,
+                includeBody: false,
                 onLog: undefined,
             };
 
@@ -66,7 +66,7 @@ export class SafefyLogger {
                 colors: true,
                 level: "debug",
                 includeHeaders: false,
-                includeBody: true,
+                includeBody: false,
                 onLog: undefined,
             };
 
@@ -78,7 +78,7 @@ export class SafefyLogger {
             colors: config.colors ?? true,
             level: config.level ?? "debug",
             includeHeaders: config.includeHeaders ?? false,
-            includeBody: config.includeBody ?? true,
+            includeBody: config.includeBody ?? false,
             onLog: config.onLog,
         };
     }

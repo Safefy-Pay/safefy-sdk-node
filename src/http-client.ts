@@ -137,7 +137,7 @@ export class SafefyHttpClient {
                 message: `${method} ${options.path} succeeded`,
                 status: response.status,
                 durationMs,
-                meta: this.logger.shouldIncludeBody() ? this.sanitize(body) : undefined,
+                meta: this.summarizeSuccessResponse(body),
             });
 
             return body as T;
@@ -391,5 +391,46 @@ export class SafefyHttpClient {
         }
 
         return masked;
+    }
+
+    private summarizeSuccessResponse(body: unknown): unknown {
+        if (!body || typeof body !== "object") {
+            return undefined;
+        }
+
+        const payload = body as Record<string, unknown>;
+        const data = payload.data;
+
+        if (!data || typeof data !== "object") {
+            return undefined;
+        }
+
+        const result: Record<string, unknown> = {};
+        const typedData = data as Record<string, unknown>;
+
+        if (Array.isArray(typedData.items)) {
+            result.itemsCount = typedData.items.length;
+        }
+
+        const summaryFields = [
+            "id",
+            "status",
+            "page",
+            "pageSize",
+            "totalItems",
+            "totalPages",
+            "hasNextPage",
+            "hasPreviousPage",
+            "environment",
+        ];
+
+        for (const field of summaryFields) {
+            const value = typedData[field];
+            if (value !== undefined) {
+                result[field] = value;
+            }
+        }
+
+        return Object.keys(result).length > 0 ? result : undefined;
     }
 }

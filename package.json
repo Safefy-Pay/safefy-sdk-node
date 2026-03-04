@@ -1,6 +1,6 @@
 {
     "name": "@safefypay/safefy-sdk-node",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "description": "SDK oficial Safefy Payment para Node.js com TypeScript",
     "type": "module",
     "repository": {

@@ -15,6 +15,7 @@ export interface SafefyLoggerConfig {
     colors?: boolean;
     level?: SafefyLogLevel;
     includeHeaders?: boolean;
+    // Defaults to false to avoid leaking full payloads in logs.
     includeBody?: boolean;
     onLog?: (entry: SafefyLogEntry) => void;
 }
