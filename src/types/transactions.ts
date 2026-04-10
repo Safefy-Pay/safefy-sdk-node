@@ -22,6 +22,10 @@ export interface CreateTransactionRequest {
     customerEmail?: string;
     customerPhone?: string;
     cardToken?: string;
+    cardNumber?: string;
+    cardHolderName?: string;
+    cardExpirationMonth?: string;
+    cardExpirationYear?: string;
     installments?: number;
     cardCvv?: string;
     boletoDueDate?: string;

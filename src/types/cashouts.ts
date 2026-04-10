@@ -47,6 +47,20 @@ export interface ListCashoutsParams {
     pageSize?: number;
 }
 
+export type CashoutSimulateAction = "complete" | "fail" | "reject";
+
+export interface CancelCashoutData {
+    id: string;
+    status: PayoutStatus;
+}
+
+export interface SimulateCashoutData {
+    id: string;
+    status: PayoutStatus;
+}
+
 export type CreateCashoutResponse = ApiResponse<CashoutData>;
 export type ListCashoutsResponse = PaginatedResponse<CashoutData>;
 export type GetCashoutResponse = ApiResponse<CashoutData>;
+export type CancelCashoutResponse = ApiResponse<CancelCashoutData>;
+export type SimulateCashoutResponse = ApiResponse<SimulateCashoutData>;

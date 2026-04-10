@@ -1,12 +1,17 @@
 import { SafefyHttpClient } from "../http-client";
 import type {
+    CancelCashoutData,
+    CancelCashoutResponse,
     CashoutData,
+    CashoutSimulateAction,
     CreateCashoutRequest,
     CreateCashoutResponse,
     GetCashoutResponse,
     ListCashoutsParams,
     ListCashoutsResponse,
     PaginatedResponse,
+    SimulateCashoutData,
+    SimulateCashoutResponse,
 } from "../types";
 
 export class CashoutsModule {
@@ -64,6 +69,43 @@ export class CashoutsModule {
 
         if (!response.data) {
             throw new Error("Cashout not found in API response.");
+        }
+
+        return response.data;
+    }
+
+    async cancelRaw(cashoutId: string): Promise<CancelCashoutResponse> {
+        return this.http.request<CancelCashoutResponse>({
+            method: "POST",
+            path: `/v1/cashouts/${cashoutId}/cancel`,
+        });
+    }
+
+    async cancel(cashoutId: string): Promise<CancelCashoutData> {
+        const response = await this.cancelRaw(cashoutId);
+
+        if (!response.data) {
+            throw new Error("Cashout cancel did not return data.");
+        }
+
+        return response.data;
+    }
+
+    async simulateRaw(cashoutId: string, action: CashoutSimulateAction): Promise<SimulateCashoutResponse> {
+        return this.http.request<SimulateCashoutResponse>({
+            method: "POST",
+            path: `/v1/cashouts/${cashoutId}/simulate`,
+            body: {
+                action,
+            },
+        });
+    }
+
+    async simulate(cashoutId: string, action: CashoutSimulateAction): Promise<SimulateCashoutData> {
+        const response = await this.simulateRaw(cashoutId, action);
+
+        if (!response.data) {
+            throw new Error("Cashout simulation did not return data.");
         }
 
         return response.data;
