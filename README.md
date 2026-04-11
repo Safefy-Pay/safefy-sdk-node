@@ -1,17 +1,18 @@
 # Safefy SDK
 
-[![npm version](https://img.shields.io/npm/v/safefy-sdk-node?label=Version&logo=npm)](https://www.npmjs.com/package/safefy-sdk-node)
+[![npm version](https://img.shields.io/npm/v/%40safefypay%2Fsafefy-sdk-node?label=Version&logo=npm)](https://www.npmjs.com/package/@safefypay/safefy-sdk-node)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/Safefy-Pay/safefy-sdk-node/ci.yml?branch=main&label=Build%20Status&logo=github)](https://github.com/Safefy-Pay/safefy-sdk-node/actions)
-[![npm downloads](https://img.shields.io/npm/dt/safefy-sdk-node?label=Downloads&logo=npm)](https://www.npmjs.com/package/safefy-sdk-node)
-[![Node version](https://img.shields.io/node/v/safefy-sdk-node?label=Node.js&logo=node.js)](https://www.npmjs.com/package/safefy-sdk-node)
-[![License](https://img.shields.io/npm/l/safefy-sdk-node?label=License)](https://www.npmjs.com/package/safefy-sdk-node)
+[![npm downloads](https://img.shields.io/npm/dt/%40safefypay%2Fsafefy-sdk-node?label=Downloads&logo=npm)](https://www.npmjs.com/package/@safefypay/safefy-sdk-node)
+[![Node version](https://img.shields.io/node/v/%40safefypay%2Fsafefy-sdk-node?label=Node.js&logo=node.js)](https://www.npmjs.com/package/@safefypay/safefy-sdk-node)
+[![License](https://img.shields.io/npm/l/%40safefypay%2Fsafefy-sdk-node?label=License)](https://www.npmjs.com/package/@safefypay/safefy-sdk-node)
 [![Documentation EN](https://img.shields.io/badge/Documentation-English-0A66C2)](./README.en.md)
 
 SDK oficial para integrar com a Safefy Payment API.
 
 ## Links oficiais
 
-- [Pacote no npm](https://www.npmjs.com/package/safefy-sdk-node)
+- [Pacote no npm](https://www.npmjs.com/package/@safefypay/safefy-sdk-node)
+- [Repositório no GitHub](https://github.com/Safefy-Pay/safefy-sdk-node)
 - [Documentação](https://docs.safefypay.com.br/)
 - [Painel Safefy](https://app.safefypay.com.br/)
 - [Credenciais de API](https://app.safefypay.com.br/panel/merchant/api-credentials)
@@ -21,13 +22,13 @@ SDK oficial para integrar com a Safefy Payment API.
 ## Instalação
 
 ```bash
-npm install safefy-sdk-node
+npm install @safefypay/safefy-sdk-node
 ```
 
 ## Configuração rápida
 
 ```ts
-import { SafefyPaymentSDK } from "safefy-sdk-node";
+import { SafefyPaymentSDK } from "@safefypay/safefy-sdk-node";
 
 const sdk = new SafefyPaymentSDK({
     publicKey: process.env.SAFEFY_PUBLIC_KEY!,
@@ -110,7 +111,7 @@ const sdk = new SafefyPaymentSDK({
 ## Tratamento de erro
 
 ```ts
-import { SafefyApiError } from "safefy-sdk-node";
+import { SafefyApiError } from "@safefypay/safefy-sdk-node";
 
 try {
     await sdk.balance.get();
