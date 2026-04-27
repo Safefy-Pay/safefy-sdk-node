@@ -19,6 +19,7 @@ export class SafefyHttpClient {
     private readonly baseUrl: string;
     private readonly publicKey: string;
     private readonly secretKey: string;
+    private readonly authMode: "v1" | "v2";
     private readonly timeoutMs: number;
     private readonly tokenRefreshBufferMs: number;
     private readonly fetchFn: typeof fetch;
@@ -34,6 +35,7 @@ export class SafefyHttpClient {
         this.baseUrl = SAFEFY_PAYMENT_API_BASE_URL;
         this.publicKey = options.publicKey;
         this.secretKey = options.secretKey;
+        this.authMode = options.authMode ?? "v1";
         this.timeoutMs = options.timeoutMs ?? 30000;
         this.tokenRefreshBufferMs = options.tokenRefreshBufferMs ?? 30000;
         this.fetchFn = options.fetchFn ?? fetch;
@@ -66,8 +68,13 @@ export class SafefyHttpClient {
         }
 
         if (auth) {
-            const token = await this.getAccessToken();
-            headers.Authorization = `Bearer ${token}`;
+            if (this.authMode === "v2") {
+                headers["X-Api-Key"] = this.publicKey;
+                headers["X-Api-Secret"] = this.secretKey;
+            } else {
+                const token = await this.getAccessToken();
+                headers.Authorization = `Bearer ${token}`;
+            }
         }
 
         const payload = options.body !== undefined ? JSON.stringify(options.body) : undefined;
