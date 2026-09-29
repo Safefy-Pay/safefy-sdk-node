@@ -85,13 +85,38 @@ const sdk = new SafefyPaymentSDK({
         colors: true,
         level: "debug",
         includeHeaders: false,
-        includeBody: true,
+        includeBody: false,
         onLog(entry) {
             console.log(entry);
         },
     },
 });
 ```
+
+> ⚠️ Never enable `includeBody` in production. Even with automatic masking of keys, card data (PAN/CVV) and CPF/CNPJ, request bodies should not go to shared logs.
+
+## Verifying webhook signatures
+
+Every Safefy callback carries `X-Safefy-Signature-V2: t={timestamp},v1={hmac}`. Check it before fulfilling any order, using the **raw** request body:
+
+```ts
+import express from "express";
+import { verifyWebhookSignature } from "@safefypay/safefy-sdk-node";
+
+app.post("/webhooks/safefy", express.raw({ type: "application/json" }), (req, res) => {
+    const ok = verifyWebhookSignature(req.body, req.headers, {
+        secret: process.env.SAFEFY_WEBHOOK_SECRET!,
+    });
+    if (!ok) return res.sendStatus(401);
+
+    const event = JSON.parse(req.body.toString("utf8"));
+    // ... handle the event
+    res.sendStatus(200);
+});
+```
+
+Callbacks older than 5 minutes are rejected (`toleranceSeconds` changes the window).
+
 
 ## Main modules
 

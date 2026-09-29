@@ -1,4 +1,6 @@
 export { SafefyPaymentSDK, SafefyApiError } from "./sdk";
+export { verifyWebhookSignature, SAFEFY_SIGNATURE_HEADER, SAFEFY_TIMESTAMP_HEADER } from "./webhooks";
+export type { VerifyWebhookOptions } from "./webhooks";
 export type {
     ApiError,
     ApiResponse,

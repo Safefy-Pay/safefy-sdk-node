@@ -7,6 +7,46 @@ import type {
     TokenResponse,
 } from "./types";
 
+// Campos que nunca aparecem em log (auditoria RF-08).
+const SENSITIVE_FIELDS = new Set([
+    "cvv", "cardcvv", "cvc", "securitycode", "cardsecuritycode",
+    "expirationdate", "cardexpiration", "cardexpirationmonth", "cardexpirationyear",
+]);
+const CARD_NUMBER_FIELDS = new Set(["cardnumber", "number", "pan"]);
+const DOCUMENT_FIELDS = new Set(["document", "documentnumber", "cpf", "cnpj", "taxid", "customerdocument"]);
+
+function luhnValid(digits: string): boolean {
+    let sum = 0;
+    let double = false;
+    for (let i = digits.length - 1; i >= 0; i--) {
+        let d = digits.charCodeAt(i) - 48;
+        if (double) {
+            d *= 2;
+            if (d > 9) d -= 9;
+        }
+        sum += d;
+        double = !double;
+    }
+    return sum % 10 === 0;
+}
+
+function looksLikeCardNumber(value: string): boolean {
+    const digits = value.replace(/[\s-]/g, "");
+    return /^\d{13,19}$/.test(digits) && luhnValid(digits);
+}
+
+/** Mantém só os 4 últimos dígitos. */
+function maskCardNumber(value: string): string {
+    const digits = value.replace(/\D/g, "");
+    return digits.length >= 4 ? `****${digits.slice(-4)}` : "***";
+}
+
+/** Mantém só os 2 últimos dígitos do CPF/CNPJ. */
+function maskDocument(value: string): string {
+    const digits = value.replace(/\D/g, "");
+    return digits.length >= 2 ? `***${digits.slice(-2)}` : "***";
+}
+
 interface RequestOptions {
     method?: "GET" | "POST" | "PATCH";
     path: string;
@@ -94,7 +134,8 @@ export class SafefyHttpClient {
             meta: {
                 url,
                 headers: this.logger.shouldIncludeHeaders() ? this.sanitize(headers) : undefined,
-                body: this.logger.shouldIncludeBody() ? this.safeJsonParse(payload) : undefined,
+                // RF-08 (auditoria): mesmo com includeBody, segredos, cartão e documento saem mascarados.
+                body: this.logger.shouldIncludeBody() ? this.sanitize(this.safeJsonParse(payload)) : undefined,
                 query: options.query,
             },
         });
@@ -378,6 +419,10 @@ export class SafefyHttpClient {
             return input.map((value) => this.sanitize(value));
         }
 
+        if (typeof input === "string") {
+            return looksLikeCardNumber(input) ? maskCardNumber(input) : input;
+        }
+
         if (typeof input !== "object") {
             return input;
         }
@@ -392,9 +437,18 @@ export class SafefyHttpClient {
                 lower.includes("token") ||
                 lower === "authorization" ||
                 lower.includes("password") ||
-                lower.includes("key");
+                lower.includes("key") ||
+                SENSITIVE_FIELDS.has(lower);
 
-            masked[key] = shouldMask ? "***" : this.sanitize(value);
+            if (shouldMask) {
+                masked[key] = "***";
+            } else if (CARD_NUMBER_FIELDS.has(lower) && (typeof value === "string" || typeof value === "number")) {
+                masked[key] = maskCardNumber(String(value));
+            } else if (DOCUMENT_FIELDS.has(lower) && (typeof value === "string" || typeof value === "number")) {
+                masked[key] = maskDocument(String(value));
+            } else {
+                masked[key] = this.sanitize(value);
+            }
         }
 
         return masked;
