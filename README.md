@@ -1,7 +1,6 @@
 # Safefy SDK
 
 [![npm version](https://img.shields.io/npm/v/%40safefypay%2Fsafefy-sdk-node?label=Version&logo=npm)](https://www.npmjs.com/package/@safefypay/safefy-sdk-node)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/Safefy-Pay/safefy-sdk-node/ci.yml?branch=main&label=Build%20Status&logo=github)](https://github.com/Safefy-Pay/safefy-sdk-node/actions)
 [![npm downloads](https://img.shields.io/npm/dt/%40safefypay%2Fsafefy-sdk-node?label=Downloads&logo=npm)](https://www.npmjs.com/package/@safefypay/safefy-sdk-node)
 [![Node version](https://img.shields.io/node/v/%40safefypay%2Fsafefy-sdk-node?label=Node.js&logo=node.js)](https://www.npmjs.com/package/@safefypay/safefy-sdk-node)
 [![License](https://img.shields.io/npm/l/%40safefypay%2Fsafefy-sdk-node?label=License)](https://www.npmjs.com/package/@safefypay/safefy-sdk-node)
@@ -154,6 +153,17 @@ try {
 npm run typecheck
 npm run build
 ```
+
+### Publicar uma nova versão
+
+O projeto não usa CI: a verificação roda localmente.
+
+- `npm install` ativa o hook de `pre-push` (`.githooks/pre-push`), que roda `npm run verify` antes de cada push. Em emergência: `git push --no-verify`.
+- Para lançar:
+  1. `npm run release:patch` (ou `:minor` / `:major`) numa branch, abrir PR e fazer merge na `main`.
+  2. Na `main` atualizada: `npm run release`. O script confere se a árvore está limpa e igual a `origin/main`, roda `npm run verify`, publica no npm, cria e envia a tag `vX.Y.Z` e cria a release no GitHub (`gh`, com notas geradas a partir dos PRs).
+
+Requer `gh` autenticado (`gh auth login`) e login no npm.
 
 ## Versionamento
 
