@@ -167,3 +167,14 @@ Recomendação para produção:
 
 - Atualize automaticamente apenas `PATCH` e `MINOR`.
 - Planeje a migração de versões `MAJOR` com testes antes de publicar em produção.
+
+## Novidades
+
+### 1.2.0
+
+- Modo de autenticação `v2` (`authMode: "v2"` em `SafefyClientOptions`): as credenciais vão nos headers `X-Api-Key` e `X-Api-Secret` de cada requisição, sem a etapa de token. O padrão continua `v1`.
+- Helper `verifyWebhookSignature` para validar o header `X-Safefy-Signature-V2` dos webhooks (veja [Verificar a assinatura dos webhooks](#verificar-a-assinatura-dos-webhooks)).
+- Os logs mascaram automaticamente chaves, dados de cartão (PAN/CVV) e CPF/CNPJ.
+- O campo `cardToken` foi removido de `CreateTransactionRequest`.
+
+Histórico completo: [releases no GitHub](https://github.com/Safefy-Pay/safefy-sdk-node/releases).
