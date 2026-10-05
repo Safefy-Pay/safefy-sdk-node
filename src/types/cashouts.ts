@@ -9,11 +9,19 @@ import type {
 
 export interface CreateCashoutRequest {
     amount: number;
+    /** Conta de saque PIX cadastrada e ativa no painel. Exclusivo com `pixKeyType`/`pixKey` e `cryptoPayoutAccountId`. */
     payoutAccountId?: string;
     pixKeyType?: PixKeyType;
     pixKey?: string;
+    /** Carteira cripto cadastrada e verificada no painel. Exclusivo com `pixKeyType`/`pixKey`. */
+    cryptoPayoutAccountId?: string;
     externalId?: string;
     callbackUrl?: string;
+    /**
+     * Opcional. Grupo de liquidação de onde o saque sai (`balance.settlementGroups[].id`, consultado logo
+     * antes do saque). Sem o campo, o grupo é escolhido automaticamente. Não combina com `cryptoPayoutAccountId`.
+     */
+    settlementGroupId?: string;
 }
 
 export interface CashoutPixData {

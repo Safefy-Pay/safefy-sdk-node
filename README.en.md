@@ -180,6 +180,12 @@ Production recommendation:
 
 ## What's new
 
+### 1.3.0
+
+- Balance per settlement group: `balance.settlementGroups` (id and available amount of each group) and `balance.availableTotal`.
+- `settlementGroupId` in `CreateCashoutRequest` to choose which group the cashout comes from. The id is temporary: get the balance right before each cashout and do not store the id.
+- `cryptoPayoutAccountId` in `CreateCashoutRequest`, and `payoutAccountId` (registered cashout account) documented.
+
 ### 1.2.0
 
 - `v2` authentication mode (`authMode: "v2"` in `SafefyClientOptions`): credentials are sent in the `X-Api-Key` and `X-Api-Secret` headers on every request, with no token step. The default is still `v1`.
