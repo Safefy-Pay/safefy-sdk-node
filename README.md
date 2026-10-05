@@ -180,6 +180,12 @@ Recomendação para produção:
 
 ## Novidades
 
+### 1.3.0
+
+- Saldo por grupo de liquidação: `balance.settlementGroups` (id e disponível de cada grupo) e `balance.availableTotal`.
+- `settlementGroupId` em `CreateCashoutRequest` para escolher de qual grupo o saque sai. O id é temporário: consulte o saldo logo antes de cada saque e não guarde o id.
+- `cryptoPayoutAccountId` em `CreateCashoutRequest` e `payoutAccountId` (conta de saque cadastrada) documentado.
+
 ### 1.2.0
 
 - Modo de autenticação `v2` (`authMode: "v2"` em `SafefyClientOptions`): as credenciais vão nos headers `X-Api-Key` e `X-Api-Secret` de cada requisição, sem a etapa de token. O padrão continua `v1`.
